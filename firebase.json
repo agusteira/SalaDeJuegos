@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/clase1_login",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

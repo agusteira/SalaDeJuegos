@@ -1,0 +1,20 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 [routerLink]="['/login']" class="inactive underlineHover"> Sign In </h2>
+        <h2 class="active"> Sign Up </h2>
+
+        <!-- Sign Up Form -->
+        <form>
+            <input type="text" id="username" class="fadeIn second" name="username" placeholder="Username">
+            <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+            <input type="password" id="confirmPassword" class="fadeIn third" name="confirmPassword" placeholder="Confirm Password">
+            <input type="submit" class="fadeIn fourth" value="Sign Up" routerLinkActive="active-route">
+        </form>
+        <!-- Already have an account? [routerLink]="['/home']" -->
+        <div id="formFooter">
+            <a class="underlineHover" [routerLink]="['/login']">Already have an account? Sign In</a>
+        </div>
+    </div>
+</div>
