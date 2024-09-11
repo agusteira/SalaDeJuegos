@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "clase1_login": {
+    "sala-de-juegos": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/clase1_login",
+            "outputPath": "dist/sala-de-juegos",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "clase1_login:build:production"
+              "buildTarget": "sala-de-juegos:build:production"
             },
             "development": {
-              "buildTarget": "clase1_login:build:development"
+              "buildTarget": "sala-de-juegos:build:development"
             }
           },
           "defaultConfiguration": "development"
