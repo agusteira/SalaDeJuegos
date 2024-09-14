@@ -1,8 +1,36 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <header class="header p-3">
-    <div>
+    <div class="header-content">
+        <div class="date-time">
+            {{ horaActual }}
+        </div>
         <h1>Sala de juegos</h1>
+        
+        
+
+        <div class="user-name" >
+
+            <div *ngIf="userLoggedIn" class ="p-1">
+                <p>Hola, {{ userName }}</p>
+                <button  class="btn btn-primary me-2" (click)="logout()">
+                    Cerrar sesión
+                </button>
+                <button class="btn btn-secondary" (click)="toggleChat()">
+                    Chat
+                </button>
+            </div>
+            
+            <button class="btn btn-primary" *ngIf="!userLoggedIn" (click)="goToLogin()">
+                Loguearse
+            </button>
+        </div>
+
+        <!-- Si no está logueado, muestra un botón que redirija al login -->
+        
     </div>
 </header>
+
 
 <div class="container">
     <div class ="grid-general">
@@ -13,7 +41,23 @@
             <div class="grid-item" (click)="navigateTo('component4')">Pasapalabra</div>
             <div class="grid-item" (click)="navigateTo('quien-soy')">QUIEN SOY?</div>
         </div>
-        <div>Aca iria una desc del juego cuando se pasa el mouse por encima</div>
+
+
+        <div class="chat-container" *ngIf="chatVisible">
+            <div class="chat-header">
+                <button class="btn btn-secondary" (click)="toggleChat()">Cerrar</button>
+            </div>
+            <div class="chat-content">
+                <!-- Aquí puedes agregar el contenido del chat -->
+                <p>Este es el área del chat.</p>
+                <form class="chat-form">
+                    <input type="text" class="form-control" placeholder="Mensaje" > <!-- [(ngModel)]="correo"-->
+                    <button class="send-button">
+                        <i class="fa fa-paper-plane"></i> <!-- Usa Font Awesome para el ícono de enviar -->
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
     
 </div>

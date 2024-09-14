@@ -70,3 +70,77 @@ html, body {
     margin-top: 100px;
     font-family: "Poppins", sans-serif;
 }
+
+.header-content {
+    position: relative;
+    text-align: center;
+}
+
+
+.user-name {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.date-time{
+    position: absolute;
+    left: 20px; 
+    top: 50%;
+    transform: translateY(-50%); 
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.chat-content {
+    background-color: #000000;
+    color:#ffffff;
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-grow: 1;
+    margin-top: auto; /* Para mantener el formulario en la parte inferior del contenedor */
+}
+
+.chat-form {
+    width: 100%;
+    display: flex;
+}
+
+.form-control {
+    flex-grow: 1; /* Ocupa todo el espacio disponible */
+    background-color: #f0f0f0; /* Color gris claro */
+    border-radius: 20px 0px 0px 20px;
+    border: 1px solid #ccc; /* Borde gris claro */
+    padding: 10px;
+    color: #000; /* Texto negro para contraste */
+}
+
+.send-button {
+    background-color: #25d366; /* Verde típico de WhatsApp */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 0 20px 20px 0; /* Bordes redondeados, con esquina derecha redondeada */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send-button i {
+    font-size: 16px; /* Tamaño del ícono */
+}
+
+.send-button:hover {
+    background-color: #1ebe55; /* Color verde más oscuro al pasar el mouse */
+}
