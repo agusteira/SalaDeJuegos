@@ -1,19 +1,19 @@
 <div class="wrapper fadeInDown">
 	<div id="formContent">
 		<!-- Tabs Titles -->
-		<h2 class="active">Sign In</h2>
-		<h2 [routerLink]="['/signUp']" class="inactive underlineHover" >Sign Up </h2>
+		<h2 class="active">Iniciar sesion</h2>
+		<h2 [routerLink]="['/signUp']" class="inactive underlineHover" >Registrarse</h2>
 
 		<!-- Login Form -->
 		<form>
-			<input type="text" id="login" class="fadeIn second" name="login" placeholder="correo" [(ngModel)]="correo">
+			<input type="text" id="login" class="fadeIn second" name="login" placeholder="Correo" [(ngModel)]="correo">
 			<input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" [(ngModel)]="clave">
-			<input type="submit" class="fadeIn fourth" value="Sign In" routerLinkActive="active-route" (click)="IniciarSesion(correo, clave)">
+			<input type="submit" class="fadeIn fourth" value="Iniciar sesion" routerLinkActive="active-route" (click)="IniciarSesion(correo, clave)">
 		</form>
 
 		<!-- Remind Passowrd -->
 		<div id="formFooter">
-		<a class="underlineHover" >Forgot Password?</a>
+		<a class="underlineHover" [routerLink]="['/signUp']">Todavia no tienes una cuenta? Click aqui!</a>
 		</div>
 
 	</div>

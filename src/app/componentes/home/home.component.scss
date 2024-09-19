@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-/* BASIC STYLES 
+/* BASIC STYLES */
 html, body {
     margin: 0;
     padding: 0;
@@ -8,7 +8,6 @@ html, body {
     background-color: #0c0c0c;
     font-family: "Poppins", sans-serif;
 }
-*/
 
 .header {
     position: fixed;
@@ -23,16 +22,17 @@ html, body {
     font-family: "Poppins", sans-serif;
 }
 
-.grid-general{
+.grid-general {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2);
+    /* Aplicar una transición suave a la propiedad grid-template-columns */
+    transition: grid-template-columns 0.5s ease;
 }
 
 /* GRID CONTAINER */
 .grid-items-container {
     display: grid;
-    
     gap: 10px;
     width: 80%;
     height: 80%;
@@ -41,7 +41,8 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
+    /* Añadir transición suave a los elementos de la grilla */
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 /* GRID ITEM STYLES */
@@ -53,7 +54,7 @@ html, body {
     font-size: 2rem;
     text-align: center;
     padding: 50px;
-    margin:10px;
+    margin: 10px;
     border-radius: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     cursor: pointer;
@@ -66,7 +67,7 @@ html, body {
     transform: scale(1.01);
 }
 
-.container{
+.container {
     margin-top: 100px;
     font-family: "Poppins", sans-serif;
 }
@@ -75,7 +76,6 @@ html, body {
     position: relative;
     text-align: center;
 }
-
 
 .user-name {
     position: absolute;
@@ -86,18 +86,18 @@ html, body {
     color: #ffffff;
 }
 
-.date-time{
+.date-time {
     position: absolute;
-    left: 20px; 
+    left: 20px;
     top: 50%;
-    transform: translateY(-50%); 
+    transform: translateY(-50%);
     font-size: 18px;
     color: #ffffff;
 }
 
 .chat-content {
     background-color: #000000;
-    color:#ffffff;
+    color: #ffffff;
     padding: 20px;
     flex-grow: 1;
     overflow-y: auto;
@@ -143,4 +143,12 @@ html, body {
 
 .send-button:hover {
     background-color: #1ebe55; /* Color verde más oscuro al pasar el mouse */
+}
+
+.one-column {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.two-columns {
+    grid-template-columns: repeat(2, 1fr);
 }

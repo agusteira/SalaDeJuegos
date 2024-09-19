@@ -3,11 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { Auth, onAuthStateChanged, signOut, User } from '@angular/fire/auth';
 import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ChatService } from '../../services/chat.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -17,24 +20,48 @@ export class HomeComponent implements OnInit {
   userName:string="";
   datosUsuario: any;
   chatVisible: boolean = false;
+  mensajePlaceHolder: string = "";
+  mensajes: any[] = []
+  subscription!: Subscription;
 
-  constructor(private router: Router,  private firestore: Firestore, public auth: Auth) {}
+  constructor(private router: Router,  private firestore: Firestore, public auth: Auth, private chatServices: ChatService) {}
+
+
+  ngOnInit(): void {
+    //Poner la hora en el header
+    setInterval(() => {
+      const ahora = new Date();
+      this.horaActual = ahora.toLocaleTimeString();
+      this.chatServices.obtenerMensajes().then((mensajes) => {
+        this.mensajes = mensajes;
+      });
+
+    }, 1000);
+
+    //Verificar que este logueado
+    onAuthStateChanged(this.auth, async (user: User | null) => {
+      if (user) {
+        this.userLoggedIn = true;
+        this.datosUsuario = await this.ObtenerDatosUsuario(user.email!);
+        if (this.datosUsuario) {
+          this.userName = this.datosUsuario.Nombre; // Si el usuario tiene un displayName, lo muestra
+        }
+      } else {
+        this.userLoggedIn = false;
+      }
+    });
+  }
+
+
+
+
 
   navigateTo(component: string) {
     this.router.navigate([`/${component}`]);
   }
 
-  obtenerDatos() {
-    this.ObtenerDatosUsuario("hola").then((usuario) => {
-      if (usuario) {
-        console.log('Usuario encontrado:', usuario);
-      } else {
-        console.log('No se encontraron datos para este usuario.');
-      }
-    });
-  }
 
-  async ObtenerDatosUsuario(correo: string): Promise<any> {
+  async ObtenerDatosUsuario(correo: string){
     const col = collection(this.firestore, 'Registro');
     const q = query(col, where('Email', '==', correo));
 
@@ -54,27 +81,6 @@ export class HomeComponent implements OnInit {
     return usuarioData; // Devuelve los datos del usuario encontrado
   }
 
-  ngOnInit(): void {
-    //Poner la hora en el header
-    setInterval(() => {
-      const ahora = new Date();
-      this.horaActual = ahora.toLocaleTimeString(); // Formato HH:MM:SS
-    }, 1000);
-
-    //Verificar que este logueado
-    onAuthStateChanged(this.auth, async (user: User | null) => {
-      if (user) {
-        this.userLoggedIn = true;
-        this.datosUsuario = await this.ObtenerDatosUsuario(user.email!);
-        if (this.datosUsuario) {
-          this.userName = this.datosUsuario.Nombre; // Si el usuario tiene un displayName, lo muestra
-        }
-      } else {
-        this.userLoggedIn = false;
-      }
-    });
-  }
-
   goToLogin() {
     this.router.navigate(['/login']);
   }
@@ -92,6 +98,19 @@ export class HomeComponent implements OnInit {
 
   toggleChat(): void {
     this.chatVisible = !this.chatVisible; // Alterna la visibilidad del chat
+  }
+
+  async enviarMensaje(mensaje:string){
+    if(mensaje != null && mensaje.length > 0){
+      try{
+        this.chatServices.subirMensaje(mensaje, this.datosUsuario.Nombre)
+        
+      }
+      catch{
+        console.log("no se pudo subir el mensaje")
+      }
+    }
+    
   }
 
 }

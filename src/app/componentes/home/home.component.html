@@ -1,39 +1,33 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<header class="header p-3">
-    <div class="header-content">
-        <div class="date-time">
-            {{ horaActual }}
-        </div>
-        <h1>Sala de juegos</h1>
-        
-        
 
-        <div class="user-name" >
-
-            <div *ngIf="userLoggedIn" class ="p-1">
-                <p>Hola, {{ userName }}</p>
-                <button  class="btn btn-primary me-2" (click)="logout()">
-                    Cerrar sesión
-                </button>
-                <button class="btn btn-secondary" (click)="toggleChat()">
-                    Chat
-                </button>
-            </div>
-            
-            <button class="btn btn-primary" *ngIf="!userLoggedIn" (click)="goToLogin()">
-                Loguearse
-            </button>
-        </div>
-
-        <!-- Si no está logueado, muestra un botón que redirija al login -->
-        
-    </div>
-</header>
 
 
 <div class="container">
-    <div class ="grid-general">
+    <div class="header p-3">
+        <div class="header-content">
+            <div class="date-time">
+                {{ horaActual }}
+            </div>
+            <h1>Sala de juegos</h1>
+            <div class="user-name" >
+                <div *ngIf="userLoggedIn" class ="p-1">
+                    <p>Hola, {{ userName }}</p>
+                    <button  class="btn btn-primary me-2" (click)="logout()">
+                        Cerrar sesión
+                    </button>
+                    <button class="btn btn-secondary" (click)="toggleChat()">
+                        Chat
+                    </button>
+                </div>
+                <button class="btn btn-primary" *ngIf="!userLoggedIn" (click)="goToLogin()">
+                    Loguearse
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-general" [ngClass]="{'one-column': !chatVisible, 'two-columns': chatVisible}">
         <div class="grid-items">
             <div class="grid-item" (click)="navigateTo('component2')">Ahorcado</div>
             <div class="grid-item" (click)="navigateTo('component3')">Mayor o Menor</div>
@@ -44,16 +38,23 @@
 
 
         <div class="chat-container" *ngIf="chatVisible">
+
             <div class="chat-header">
                 <button class="btn btn-secondary" (click)="toggleChat()">Cerrar</button>
             </div>
             <div class="chat-content">
-                <!-- Aquí puedes agregar el contenido del chat -->
-                <p>Este es el área del chat.</p>
+                <!-- Chat -->
+                <ng-container *ngFor="let mensaje of mensajes; let i = index">
+                    <div class="card-mensaje">
+                        <p> {{mensaje.Nombre}} : {{mensaje.Mensaje}} ({{mensaje.Fecha}})</p>
+                    </div>
+                    
+                </ng-container>
+                <!--Enviar mensaje -->
                 <form class="chat-form">
-                    <input type="text" class="form-control" placeholder="Mensaje" > <!-- [(ngModel)]="correo"-->
-                    <button class="send-button">
-                        <i class="fa fa-paper-plane"></i> <!-- Usa Font Awesome para el ícono de enviar -->
+                    <input type="text" class="form-control" placeholder="Mensaje" name="mensajePlaceHolder" [(ngModel)]="mensajePlaceHolder"> <!-- [(ngModel)]="correo"-->
+                    <button class="send-button" (click)="enviarMensaje(mensajePlaceHolder)">
+                        <i class="fa fa-paper-plane"></i>
                     </button>
                 </form>
             </div>
