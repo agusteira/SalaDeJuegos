@@ -29,13 +29,12 @@
 
     <div class="grid-general" [ngClass]="{'one-column': !chatVisible, 'two-columns': chatVisible}">
         <div class="grid-items">
-            <div class="grid-item" (click)="navigateTo('component2')">Ahorcado</div>
-            <div class="grid-item" (click)="navigateTo('component3')">Mayor o Menor</div>
-            <div class="grid-item" (click)="navigateTo('component4')">Preguntados</div>
-            <div class="grid-item" (click)="navigateTo('component4')">Pasapalabra</div>
+            <div class="grid-item" (click)="navigateTo('juegos/ahorcado')">Ahorcado</div>
+            <div class="grid-item" (click)="navigateTo('juegos/mayorMenor')">Mayor o Menor</div>
+            <div class="grid-item" (click)="navigateTo('juegos/preguntados')">Preguntados</div>
+            <div class="grid-item" (click)="navigateTo('juegos')">Pasapalabra</div>
             <div class="grid-item" (click)="navigateTo('quien-soy')">QUIEN SOY?</div>
         </div>
-
 
         <div class="chat-container" *ngIf="chatVisible">
 

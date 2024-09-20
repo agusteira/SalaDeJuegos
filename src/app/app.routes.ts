@@ -13,6 +13,7 @@ export const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
   { path: 'quien-soy', component: QuienSoyComponent },
   { path: 'error', component: ErrorComponent },
+  { path: "juegos", loadChildren: ()=> import ("./modulos/juegos/juegos.module").then(m => m.JuegosModule)},
   { path: '', redirectTo: '/home', pathMatch: 'full' },  // Ruta por defecto
   { path: '**', component: ErrorComponent }  // Ruta para errores 404
 ];

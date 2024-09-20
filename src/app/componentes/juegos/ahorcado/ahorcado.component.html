@@ -1,0 +1,35 @@
+
+
+
+<div class="ahorcado-container">
+    <div class="header">
+        <div class="header-content">
+                <h2 class="comeback inactive underlineHover" [routerLink]="['/home']">
+                    COMEBACK
+                </h2>
+            <h1>QUIEN SOY?</h1>
+        </div>
+    </div>
+
+    <div class="card center mx-auto mb-4">
+        <div class="intentos">
+            <p>Intentos restantes: {{ intentos }}</p>
+        </div>
+    
+        <div class="palabra">
+            <span *ngFor="let letra of palabraOculta">{{ letra }}</span>
+        </div>
+    
+        <div class="teclado ">
+            <button *ngFor="let letra of teclado"
+                    (click)="manejarLetra(letra)"
+                    [disabled]="letrasCorrectas.has(letra) || letrasErroneas.includes(letra)">
+                {{ letra }}
+            </button>
+        </div>
+    
+        <div class="letras-erroneas">
+            <p>Letras incorrectas: {{ letrasErroneas.join(', ') }}</p>
+        </div>
+    </div>
+</div>

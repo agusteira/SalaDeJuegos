@@ -1,0 +1,187 @@
+.ahorcado-container {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #012442;
+  margin-top: 100px; /* Espacio para evitar que el contenido se superponga con el header */
+}
+
+.intentos {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.palabra {
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+  margin-bottom: 20px;
+}
+
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+
+  button {
+      padding: 10px;
+      font-size: 1.2rem;
+      background-color: #25d366;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:disabled {
+          background-color: #888;
+          cursor: not-allowed;
+      }
+
+      &:hover:not(:disabled) {
+          background-color: #1ebe55;
+      }
+  }
+}
+
+.letras-erroneas {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #012442;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Asegura que el header esté por encima del contenido */
+  font-family: "Poppins", sans-serif;
+}
+
+.header-content {
+  position: relative;
+  text-align: center;
+}
+
+.user-name {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.date-time {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #ffffff;
+}
+
+/* Card styling similar to profile-content */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 900px;
+  background: #012442;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  margin-top: 120px;
+}
+
+/* Similar to profile-details and profile-description */
+.card .intentos,
+.card .palabra,
+.card .teclado,
+.card .letras-erroneas {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+  text-align: center;
+}
+
+/* Text styling similar to profile-details h2 */
+.card .intentos p,
+.card .letras-erroneas p {
+  color: #000;
+  font-size: 16px;
+}
+
+/* Style for the buttons in .teclado */
+.card .teclado button {
+  padding: 10px;
+  font-size: 1.2rem;
+  background-color: #25d366;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card .teclado button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.card .teclado button:hover:not(:disabled) {
+  background-color: #1ebe55;
+}
+
+.comeback {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #ffffff;
+}
+
+h2.inactive {
+  color: #7a7a7a;
+}
+
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.underlineHover:hover:after {
+  width: 100%;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #012442;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* Mantén el header por encima del contenido */
+  font-family: "Poppins", sans-serif;
+}
