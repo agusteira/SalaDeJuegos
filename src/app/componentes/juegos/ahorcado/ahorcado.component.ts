@@ -21,6 +21,10 @@ export class AhorcadoComponent {
   letrasCorrectas: Set<string> = new Set();
   intentos: number = 6;
   teclado: string[] = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  // Variables para las alertas
+  showErrorModal: boolean = false;
+  message: string = '';
+  resultado: string = '';
 
   constructor(private ahorcadoService: AhorcadoService) { }
 
@@ -39,7 +43,7 @@ export class AhorcadoComponent {
 
   // Maneja la letra presionada en el teclado virtual
   manejarLetra(letra: string) {
-
+    console.log(this.palabra)
     if (this.letrasCorrectas.has(letra) || this.letrasErroneas.includes(letra)) {
       return;
     }
@@ -53,14 +57,24 @@ export class AhorcadoComponent {
     }
 
     if (this.intentos === 0) {
-      alert('¡Perdiste! La palabra era: ' + this.palabra);
+      this.mostrarErrorModal('La palabra era: ' + this.palabra, "Perdiste!");
       this.reiniciarJuego();
     }
 
     if (!this.palabraOculta.includes('_')) {
-      alert('¡Ganaste! Adivinaste la palabra: ' + this.palabra);
+      this.mostrarErrorModal('Adivinaste la palabra: ' + this.palabra, "Ganaste!");
       this.reiniciarJuego();
     }
+  }
+
+  mostrarErrorModal(mensaje: string, resultado:string) {
+    this.resultado = resultado;
+    this.message = mensaje;
+    this.showErrorModal = true;
+  }
+
+  closeModal() {
+    this.showErrorModal = false;
   }
 
   revelarLetras(letra: string) {

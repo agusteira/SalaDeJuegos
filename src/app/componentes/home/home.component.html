@@ -43,12 +43,21 @@
             </div>
             <div class="chat-content">
                 <!-- Chat -->
-                <ng-container *ngFor="let mensaje of mensajes; let i = index">
-                    <div class="card-mensaje">
-                        <p> {{mensaje.Nombre}} : {{mensaje.Mensaje}} ({{mensaje.Fecha}})</p>
-                    </div>
-                    
-                </ng-container>
+                <div class="chat-messages">
+                    <ng-container *ngFor="let mensaje of mensajes; let i = index">
+                        <div class="card-mensaje">
+                            <div *ngIf="mensaje.Nombre == userName" class="mensaje derecha">
+                                <p> {{mensaje.Nombre}} : {{mensaje.Mensaje}} </p>
+                                <span class="hora">{{ mensaje.Fecha }}</span>
+                            </div>
+                            <div *ngIf="mensaje.Nombre != userName" class="mensaje izquierda">
+                                <p > <b>{{mensaje.Nombre}}</b>: {{mensaje.Mensaje}}</p>
+                                <span class="hora">{{ mensaje.Fecha }}</span>
+                            </div>
+                        </div>
+                        
+                    </ng-container>
+                </div>
                 <!--Enviar mensaje -->
                 <form class="chat-form">
                     <input type="text" class="form-control" placeholder="Mensaje" name="mensajePlaceHolder" [(ngModel)]="mensajePlaceHolder"> <!-- [(ngModel)]="correo"-->

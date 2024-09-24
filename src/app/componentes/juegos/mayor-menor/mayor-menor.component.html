@@ -1,1 +1,44 @@
-<p>mayor-menor works!</p>
+<div class="mayor-menor-container">
+    <div class="header">
+        <div class="header-content">
+                <h2 class="comeback inactive underlineHover" [routerLink]="['/home']">
+                    COMEBACK
+                </h2>
+            <h1>QUIEN SOY?</h1>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <div class="col">
+            aca ira las estadisticas
+            <!-- Aca IRA la puntuacion -->
+        </div> 
+        
+        <div class="card mx-auto mt-5">
+            <h2 class="cartas">Carta actual</h2>
+            <div class="cartas">{{ cartaActual }}</div>
+        
+            <div class="opciones">
+                <button (click)="compararCartas('mayor')" class="btn">Mayor</button>
+                <button (click)="compararCartas('menor')" class="btn">Menor</button>
+                
+            </div>
+        
+            <p>{{ mensaje }}</p>
+        </div>
+      
+        <div class="col">
+            Aca ira el chat
+            <!-- Aca IRA el chat -->
+        </div> 
+      
+        <div *ngIf="mostrarModal" class="modal-overlay">
+          <div class="modal-content">
+            <h2>¡Juego Terminado!</h2>
+            <p>{{ mensaje }}</p>
+            <button (click)="reiniciarJuego()" class="btn">Reiniciar</button>
+          </div>
+        </div>
+    </div>
+</div>
+  

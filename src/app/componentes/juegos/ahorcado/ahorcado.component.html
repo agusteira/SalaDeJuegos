@@ -1,6 +1,3 @@
-
-
-
 <div class="ahorcado-container">
     <div class="header">
         <div class="header-content">
@@ -31,5 +28,13 @@
         <div class="letras-erroneas">
             <p>Letras incorrectas: {{ letrasErroneas.join(', ') }}</p>
         </div>
+
+        <div *ngIf="showErrorModal" class="modal-overlay">
+            <div class="modal-content">
+              <h2>{{resultado}}</h2>
+              <p>{{ message }}</p>
+              <button (click)="closeModal()">Cerrar</button>
+            </div>
+          </div>
     </div>
 </div>
