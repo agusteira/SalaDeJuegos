@@ -1,1 +1,35 @@
-<p>preguntados works!</p>
+<div class="ahorcado-container">
+    <div class="header">
+        <div class="header-content">
+            <h2 class="comeback inactive underlineHover" [routerLink]="['/home']">
+                COMEBACK
+            </h2>
+            <h1>QUIEN SOY?</h1>
+        </div>
+    </div>
+
+    <div class="card center mx-auto mb-4">
+        <p>Intentos restantes: {{intentos}}
+        </p>
+        <img [src]="banderaActual" alt="Bandera" style="width: 200px; height: auto;"/>
+
+        <div class="teclado">
+            <button *ngFor="let opcion of opciones" (click)="verificarRespuesta(opcion)">
+                {{ opcion }}
+            </button>
+        </div>
+
+        <div *ngIf="mostrarModalError" class="modal-overlay">
+            <div class="modal-content">
+                <h2>{{ mensaje }}</h2>
+                <button (click)="cerrarModal()">Cerrar</button>
+            </div>
+        </div>
+
+        <!-- Mostrar puntaje y mensaje al final -->
+        <div *ngIf="!mostrarModalError" class="puntaje">
+            <h3>{{ mensaje }}</h3>
+            <p>Puntaje: {{ puntaje }}</p>
+        </div>
+    </div>
+</div>

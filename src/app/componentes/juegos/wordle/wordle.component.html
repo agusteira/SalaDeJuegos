@@ -1,0 +1,38 @@
+<div class="wordle-container">
+    <div class="header">
+        <div class="header-content">
+                <h2 class="comeback inactive underlineHover" [routerLink]="['/home']">
+                    COMEBACK
+                </h2>
+            <h1>WORDLE</h1>
+        </div>
+    </div>
+  
+    <div class="wordle-game card center mx-auto mb-4">
+      <div *ngIf="mensaje" class="resultado">
+        <p>{{ mensaje }}</p>
+      </div>
+  
+      <!-- Muestra la palabra actual mientras se escribe -->
+      <div class="palabra">
+        <span *ngFor="let letra of palabraActual">{{ letra }}</span>
+      </div>
+  
+      <!-- Muestra los intentos previos -->
+      <div class="fila" *ngFor="let fila of intentos">
+        <div class="letra" *ngFor="let letra of fila" [ngClass]="obtenerClaseLetra(letra)">
+          {{ letra.letra }}
+        </div>
+      </div>
+
+      <div *ngIf="mostrarModal" class="modal-overlay">
+        <div class="modal-content">
+          <h2>¡Juego Terminado!</h2>
+          <p>{{ mensaje }}</p>
+          <button (click)="inicializarJuego()" class="btn">Reiniciar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  

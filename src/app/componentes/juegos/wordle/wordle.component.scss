@@ -1,0 +1,197 @@
+.wordle-container {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #012442;
+  margin-top: 100px;
+}
+
+.wordle-game {
+  background-color: #012442;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.palabra {
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.fila {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.letra {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  font-size: 1.5rem;
+  color: #ffffff;
+  background-color: #888;
+  border-radius: 5px;
+}
+
+.correcta {
+  background-color: #25d366;
+}
+
+.descolocada {
+  background-color: #b4a62b;
+}
+
+.incorrecta {
+  background-color: #f44336;
+}
+
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+
+  button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #25d366;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #1ebe55;
+    }
+
+    &:disabled {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.resultado {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/*==============================HEADER========================================*/
+.comeback {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #ffffff;
+}
+
+h2.inactive {
+  color: #7a7a7a;
+}
+
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #56baed;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.underlineHover:hover:after {
+  width: 100%;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #012442;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  font-family: "Poppins", sans-serif;
+}
+
+/*======================================================================*/
+
+/*====================================ALERTA===================================================*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  color:black;
+}
+
+.modal-content button {
+
+  padding: 10px 20px;
+  background-color: #012442;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  
+}
+
+.modal-content button:hover {
+  background-color: #004080;
+}
+
+.auto-fill-buttons {
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.auto-fill-buttons button {
+  padding: 20px 30px;
+  background-color: #012442;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  margin-left:15px
+}
+
+.auto-fill-buttons button:hover {
+  background-color: #004080;
+}
+
+/*==========================================================*/

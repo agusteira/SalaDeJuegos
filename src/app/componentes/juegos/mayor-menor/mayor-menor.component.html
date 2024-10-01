@@ -9,14 +9,23 @@
     </div>
 
     <div class="grid-container">
-        <div class="col">
-            aca ira las estadisticas
-            <!-- Aca IRA la puntuacion -->
-        </div> 
+        <div>
+        </div>
         
-        <div class="card mx-auto mt-5">
-            <h2 class="cartas">Carta actual</h2>
-            <div class="cartas">{{ cartaActual }}</div>
+        <div class="card  mx-auto">
+            <div class="carta-actual">
+                <h3>Carta Actual</h3>
+                <ng-container *ngIf="cargandoCarta; else mostrarCarta">
+                    <p>Cargando carta...</p>
+                  </ng-container>
+                  
+                  <!-- Mostrar la carta cuando ya no esté cargando -->
+                  <ng-template #mostrarCarta>
+                    <img [src]="imagenCartaActual" alt="Carta actual">
+                  </ng-template>
+              </div>
+            
+            <!--<div class="cartas">{{ cartaActual }}</div>-->
         
             <div class="opciones">
                 <button (click)="compararCartas('mayor')" class="btn">Mayor</button>
@@ -26,12 +35,7 @@
         
             <p>{{ mensaje }}</p>
         </div>
-      
-        <div class="col">
-            Aca ira el chat
-            <!-- Aca IRA el chat -->
-        </div> 
-      
+
         <div *ngIf="mostrarModal" class="modal-overlay">
           <div class="modal-content">
             <h2>¡Juego Terminado!</h2>

@@ -5,12 +5,43 @@
         <h2 class="active">Registrarse</h2>
 
         <!-- Sign Up Form -->
-        <form>
-            <input type="text" id="nombre" class="fadeIn second" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
-            <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email" [(ngModel)]="correo">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña" [(ngModel)]="clave">
-            <input type="password" id="confirmPassword" class="fadeIn third" name="confirmPassword" placeholder="Confirmar Contraseña" [(ngModel)]="confirmarClave">
-            <input type="submit" class="fadeIn fourth" value="Registrarse" routerLinkActive="active-route" (click)="Registrarse(correo, clave, confirmarClave, nombre)">
+        <form [formGroup]="form" (ngSubmit)="Registrarse()">
+          <div  id="nombre" >
+            <input type="text" class="fadeIn second" name="nombre" placeholder="Nombre"  formControlName="nombre">
+            <ng-container *ngIf="nombre?.hasError('pattern')">
+              <br>
+              <small class="text-danger">El nombre sólo debe contener solo letras</small>
+            </ng-container>
+          </div>
+
+          <div id="correo">
+            <input type="text"  class="fadeIn third red" name="correo" placeholder="correo"  formControlName="correo">
+            <br>
+            <ng-container *ngIf="correo?.hasError('email')">
+              <small class="text-danger">Formato de correo inválido</small>
+            </ng-container>
+          </div>
+
+          <div  id="password">
+            <input type="password" class="fadeIn third" name="password" placeholder="Contraseña"  formControlName="clave">
+            <ng-container *ngIf="clave?.hasError('minlength')">
+              <br>
+              <small class="text-danger">
+                La clave debe tener mínimo {{clave?.getError('minlength').requiredLength}} caracteres
+              </small>
+            </ng-container>
+          </div>
+
+          <div id="confirmPassword">
+            <input type="password" class="fadeIn third" name="confirmPassword" placeholder="Confirmar Contraseña" formControlName="confirmarClave">
+            <small class="text-danger">
+              <br>
+              {{confirmarClave?.getError('noCoincide')}}
+            </small>
+          </div>
+
+          <input type="submit" class="fadeIn fourth" value="Registrarse" [disabled]="form.invalid">
+            
         </form>
 
         <!-- Already have an account? -->

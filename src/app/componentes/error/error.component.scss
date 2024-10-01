@@ -58,68 +58,68 @@
 }
 @keyframes shadowsdancing {
   0% {
-    box-shadow: inset 30px 0 0 rgba(209, 242, 165, 0.4),
-				inset 0 30px 0 rgba(239, 250, 180, 0.4),
-				inset -30px 0 0 rgba(255, 196, 140, 0.4),	
-				inset 0 -30px 0 rgba(245, 105, 145, 0.4);
+    box-shadow: inset 30px 0 0 rgba(47, 79, 79, 0.4),  
+                inset 0 30px 0 rgba(0, 0, 0, 0.4), 
+                inset -30px 0 0 rgba(70, 130, 180, 0.4),
+                inset 0 -30px 0 rgba(105, 105, 105, 0.4); 
   }
   25% {
-    box-shadow: inset 30px 0 0 rgba(245, 105, 145, 0.4),
-				inset 0 30px 0 rgba(209, 242, 165, 0.4),
-				inset -30px 0 0 rgba(239, 250, 180, 0.4),	
-				inset 0 -30px 0 rgba(255, 196, 140, 0.4);
+    box-shadow: inset 30px 0 0 rgba(105, 105, 105, 0.4), 
+                inset 0 30px 0 rgba(47, 79, 79, 0.4),   
+                inset -30px 0 0 rgba(72, 61, 139, 0.4), 
+                inset 0 -30px 0 rgba(70, 130, 180, 0.4);
   }
   50% {
-     box-shadow: inset 30px 0 0 rgba(255, 196, 140, 0.4),
-				inset 0 30px 0 rgba(245, 105, 145, 0.4),
-				inset -30px 0 0 rgba(209, 242, 165, 0.4),	
-				inset 0 -30px 0 rgba(239, 250, 180, 0.4);
+    box-shadow: inset 30px 0 0 rgba(70, 130, 180, 0.4), 
+                inset 0 30px 0 rgba(105, 105, 105, 0.4), 
+                inset -30px 0 0 rgba(47, 79, 79, 0.4), 
+                inset 0 -30px 0 rgba(72, 61, 139, 0.4); 
   }
   75% {
-   box-shadow: inset 30px 0 0 rgba(239, 250, 180, 0.4),
-				inset 0 30px 0 rgba(255, 196, 140, 0.4),
-				inset -30px 0 0 rgba(245, 105, 145, 0.4),	
-				inset 0 -30px 0 rgba(209, 242, 165, 0.4);
+    box-shadow: inset 30px 0 0 rgba(72, 61, 139, 0.4),  
+                inset 0 30px 0 rgba(70, 130, 180, 0.4),  
+                inset -30px 0 0 rgba(105, 105, 105, 0.4),
+                inset 0 -30px 0 rgba(47, 79, 79, 0.4);  
   }
   100% {
-    box-shadow: inset 30px 0 0 rgba(209, 242, 165, 0.4),
-				inset 0 30px 0 rgba(239, 250, 180, 0.4),
-				inset -30px 0 0 rgba(255, 196, 140, 0.4),	
-				inset 0 -30px 0 rgba(245, 105, 145, 0.4);
+    box-shadow: inset 30px 0 0 rgba(47, 79, 79, 0.4), 
+                inset 0 30px 0 rgba(72, 61, 139, 0.4),  
+                inset -30px 0 0 rgba(70, 130, 180, 0.4),
+                inset 0 -30px 0 rgba(105, 105, 105, 0.4); 
   }
 }
 @keyframes colordancing {
   0% {
-    color: #D1F2A5;
+    color: #708090;
   }
   25% {
-    color: #F56991;
+    color: #778899; 
   }
   50% {
-    color: #FFC48C;
+    color: #2F4F4F;
   }
   75% {
-    color: #EFFAB4;
+    color: #4B0082; 
   }
   100% {
-    color: #D1F2A5;
+    color: #708090;
   }
 }
 @keyframes colordancing2 {
   0% {
-    color: #FFC48C;
+    color: #4B0082; 
   }
   25% {
-    color: #EFFAB4;
+    color: #2F4F4F; 
   }
   50% {
-    color: #D1F2A5;
+    color: #778899; 
   }
   75% {
-    color: #F56991;
+    color: #708090; 
   }
   100% {
-    color: #FFC48C;
+    color: #4B0082; 
   }
 }
 
@@ -162,3 +162,4 @@ a.more-link {
   margin-top: 50px;
   letter-spacing: 1px;
 }
+

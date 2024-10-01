@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { addDoc, collection, Firestore, query, getDocs, where, orderBy } from '@angular/fire/firestore';
+import { addDoc, collection, Firestore, query, getDocs, where, orderBy, limit } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -30,16 +30,21 @@ export class ChatService {
   }
 
   async obtenerMensajes(){
+    
     const col = collection(this.firestore, 'Chat');
-    const q = query(col, orderBy('Fecha', 'desc'));
+    const q = query(col, orderBy('datetime', 'desc'), limit(10)); //LIMITADO PARA NO REALIZAR CONSULTAS QUE CONSUMAN
 
     const querySnapshot = await getDocs(q);
-
+    console.log("COnsulta obteniendo mensajes")
     const mensajes: any[] = [];
 
     querySnapshot.forEach((doc) => {
       mensajes.push({ id: doc.id, ...doc.data() });
     });
+
+    mensajes.reverse();
+
     return mensajes;
+
   }
 }
