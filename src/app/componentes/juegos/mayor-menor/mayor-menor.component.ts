@@ -6,6 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AhorcadoService } from '../../../services/ahorcado.service';
 import { MayorMenorApiService } from '../../../services/mayor-menor-api.service';
+import { FirebaseDBService } from '../../../services/puntaje.service';
+import { Auth, onAuthStateChanged, User } from '@angular/fire/auth';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -15,6 +18,7 @@ import { MayorMenorApiService } from '../../../services/mayor-menor-api.service'
   styleUrl: './mayor-menor.component.scss'
 })
 export class MayorMenorComponent {
+
   deckId: string = '';
   cartaActual: string = '';
   cartaSiguiente: string = '';
@@ -26,11 +30,23 @@ export class MayorMenorComponent {
   puntuacion: number = 0;
   cargandoCarta!: boolean;
   
+  //Usuario
+  datosUsuario: any;
 
-  constructor(private mayorMenorService: MayorMenorApiService) { }
+  mostrarTabla: boolean = false;
+  topTres: any
+  
+  constructor(private mayorMenorService: MayorMenorApiService,private puntajeServices: FirebaseDBService, public auth: Auth, private authServices: AuthService) { }
 
   ngOnInit(): void {
     this.inicializarBaraja();
+
+    onAuthStateChanged(this.auth, async (user: User | null) => {
+      if (user) {
+        this.datosUsuario = await this.authServices.ObtenerDatosUsuario(user.email!);
+
+      }
+    });
   }
 
   inicializarBaraja() {
@@ -78,6 +94,7 @@ export class MayorMenorComponent {
         if (this.intentos === 0) {
           this.mostrarModal = true;
           this.mensaje = `Puntuación final: ${this.puntuacion}`;
+          this.guardarPuntaje(this.puntuacion);
           this.puntuacion = 0;
         }
       }
@@ -104,5 +121,23 @@ export class MayorMenorComponent {
     this.intentos = 3;
     this.inicializarBaraja();
     this.mostrarModal = false;
+  }
+
+  guardarPuntaje(puntaje:number){
+    if (puntaje != 0){
+      try{
+        this.puntajeServices.subirPuntaje(puntaje, this.datosUsuario.Nombre, "mayor-menor")
+      }
+      catch (error){
+        console.error("no se pudo subir el mensaje: ",error)
+      }
+    }
+  }
+  async abrirPuntuaciones() {
+    this.mostrarTabla = !this.mostrarTabla
+    if(this.mostrarTabla){
+      this.topTres = await this.puntajeServices.traerPuntajes("mayor-menor")
+    }
+    
   }
 }

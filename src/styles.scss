@@ -10,3 +10,65 @@ body{
     background-attachment: fixed; 
 
 }
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #012442;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .comeback {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffffff;
+  }
+  
+  h2.inactive {
+    color: #7a7a7a;
+  }
+  
+  h2.active {
+    color: #cccccc;
+    border-bottom: 2px solid #5fbae9;
+  }
+  
+  .underlineHover:after {
+    display: block;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 2px;
+    background-color: #56baed;
+    content: "";
+    transition: width 0.2s;
+  }
+  
+  .underlineHover:hover {
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .underlineHover:hover:after {
+    width: 100%;
+  }
+  
+  .puntuaciones{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffffff;
+  }
+

@@ -1,40 +1,79 @@
 <div class="ahorcado-container">
     <div class="header">
         <div class="header-content">
-                <h2 class="comeback inactive underlineHover" [routerLink]="['/home']">
-                    COMEBACK
-                </h2>
+            <h2 class="comeback inactive underlineHover" [routerLink]="['/home']">COMEBACK</h2>
             <h1>AHORCADO</h1>
+            <button class="btn btn-primary puntuaciones" (click)="abrirPuntuaciones()">
+                Puntuaciones
+            </button>
         </div>
     </div>
 
-    <div class="card center mx-auto mb-4">
-        <div class="intentos">
-            <p>Intentos restantes: {{ intentos }}</p>
-        </div>
+    <div class="grid-general" [ngClass]="{'one-column': !mostrarTabla, 'two-columns': mostrarTabla}"><div>
+        <div  [ngClass]="{'card1 center mx-auto mb-4': !mostrarTabla, 'card2 center mx-auto mb-4 columna': mostrarTabla}" >
+            <!-- Muñeco de ahorcado -->
+            
+            <div class="cardona center mx-auto mb-4">
+                <div class="intentos">
+                    <p>Intentos restantes: {{ intentos }}</p>
+                    <div class="muñeco">
+                        <div class="poste"></div>
+                        <div class="poste1"></div>
+                        
+                        <div class="cabeza" *ngIf="intentos <= 5"></div>
+                        <div class="cuerpo" *ngIf="intentos <= 4"></div>
+                        <div class="brazo-izq" *ngIf="intentos <= 3"></div>
+                        <div class="brazo-der" *ngIf="intentos <= 2"></div>
+                        <div class="pierna-izq" *ngIf="intentos <= 1"></div>
+                        <div class="pierna-der" *ngIf="intentos === 0"></div>
+                    </div>
+                </div>
+                
+                <div class="palabra">
+                    <span *ngFor="let letra of palabraOculta">{{ letra }}</span>
+                </div>
+            
+            </div>
     
-        <div class="palabra">
-            <span *ngFor="let letra of palabraOculta">{{ letra }}</span>
-        </div>
+            <div class="cardona center mx-auto mb-4">
+                <div class="teclado">
+                    <button *ngFor="let letra of teclado"
+                            (click)="manejarLetra(letra)"
+                            [disabled]="letrasCorrectas.has(letra) || letrasErroneas.includes(letra)">
+                        {{ letra }}
+                    </button>
+                </div>
+            
+                <div class="letras-erroneas">
+                    <p>Letras incorrectas: {{ letrasErroneas.join(', ') }}</p>
+                </div>
+            </div>
     
-        <div class="teclado ">
-            <button *ngFor="let letra of teclado"
-                    (click)="manejarLetra(letra)"
-                    [disabled]="letrasCorrectas.has(letra) || letrasErroneas.includes(letra)">
-                {{ letra }}
-            </button>
-        </div>
     
-        <div class="letras-erroneas">
-            <p>Letras incorrectas: {{ letrasErroneas.join(', ') }}</p>
+            
         </div>
 
-        <div *ngIf="showErrorModal" class="modal-overlay">
-            <div class="modal-content">
-              <h2>{{resultado}}</h2>
-              <p>{{ message }}</p>
-              <button (click)="closeModal()">Cerrar</button>
-            </div>
-          </div>
+        
+    </div>  
+
+    <div class="puntuador-container" *ngIf="mostrarTabla">
+        <div class="puntuador-content">
+            <h1>Puntuaciones</h1>
+            <ng-container *ngFor="let puntuacion of topTres; let i = index">
+                <div class="puntuacion-item">
+                    <span class="puntuacion-usuario">{{ puntuacion.Usuario.toUpperCase() }} <br> {{ puntuacion.Puntaje }} puntos</span>
+                    <span class="puntuacion-fecha">{{ puntuacion.Fecha }}</span>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div *ngIf="showErrorModal" class="modal-overlay">
+        <div class="modal-content">
+          <h2>{{ resultado }}</h2>
+          <p>{{ message }}</p>
+          <p>{{ mensajePuntaje }}</p>
+          <button (click)="closeModal()">Cerrar</button>
+        </div>
     </div>
 </div>

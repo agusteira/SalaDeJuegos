@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { WordleService } from '../../../services/wordle.service'; // Ajusta la ruta según tu estructura de carpetas
+import { FirebaseDBService } from '../../../services/puntaje.service';
+import { Auth, onAuthStateChanged, User } from '@angular/fire/auth';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-wordle',
@@ -12,6 +15,7 @@ import { WordleService } from '../../../services/wordle.service'; // Ajusta la r
   styleUrls: ['./wordle.component.scss']
 })
 export class WordleComponent implements OnInit {
+
   palabraSecreta: string = '';
   palabraActual: string[] = [];
   intentos: Array<{ letra: string, estado: string }[]> = [];
@@ -22,10 +26,27 @@ export class WordleComponent implements OnInit {
   mostrarModal: boolean = false;
   cantIntentos!: number;
 
-  constructor(public wordleService: WordleService) {}
+  //Puntaje
+  puntaje: number = 0;
+  mensajePuntaje: string = ""
+
+  //Usuario
+  datosUsuario: any;
+
+  mostrarTabla: boolean = false;
+  topTres:any
+
+  constructor(public wordleService: WordleService,  private puntajeServices: FirebaseDBService, public auth: Auth, private authServices: AuthService) {}
 
   ngOnInit(): void {
     this.inicializarJuego();
+
+    onAuthStateChanged(this.auth, async (user: User | null) => {
+      if (user) {
+        this.datosUsuario = await this.authServices.ObtenerDatosUsuario(user.email!);
+
+      }
+    });
   }
 
   public inicializarJuego(): void {
@@ -33,7 +54,7 @@ export class WordleComponent implements OnInit {
     this.palabraSecreta = this.wordleService.getPalabraAleatoria().toUpperCase();
     this.intentos = Array.from({ length: this.maxIntentos }, () => Array(this.palabraSecreta.length).fill({ letra: '', estado: '' }));
     this.palabraActual = Array(this.palabraSecreta.length).fill('_');
-    //console.log(this.palabraSecreta);
+    console.log(this.palabraSecreta);
   }
 
   public resetJuego(): void {
@@ -43,6 +64,7 @@ export class WordleComponent implements OnInit {
     this.juegoTerminado = false;
     this.maxIntentos = 6;
     this.cantIntentos = 0;
+
   }
 
   manejarLetra(letra: string): void {
@@ -58,6 +80,7 @@ export class WordleComponent implements OnInit {
 
   public actualizarPalabraActual(): void {
     this.palabraActual = this.intentoActual.split('').concat(Array(this.palabraSecreta.length - this.intentoActual.length).fill('_'));
+    
   }
 
   public evaluarIntento(): void {
@@ -82,9 +105,16 @@ export class WordleComponent implements OnInit {
 
   public verificarResultado(): void {
     if (this.intentos.some(intento => intento.every(l => l.estado === 'correcta'))) {
-      this.mostrarMensaje('¡Ganaste! La palabra era: ${this.palabraSecreta}');
+      this.puntaje = this.puntaje+this.maxIntentos + 3;
+      this.mostrarMensaje('¡Ganaste! La palabra era: ' + this.palabraSecreta);
+      this.mensajePuntaje = "Puntaje actual: " + this.puntaje
+      console.log(this.puntaje)
     } else if (this.maxIntentos === 0) {
       this.mostrarMensaje(`¡Perdiste! La palabra era: ${this.palabraSecreta}`);
+      this.mensajePuntaje = "Puntaje final: " + this.puntaje
+      this.guardarPuntaje(this.puntaje)
+      this.puntaje = 0;
+      console.log(this.puntaje)
     }
   }
 
@@ -106,5 +136,24 @@ export class WordleComponent implements OnInit {
     } else if (/^[a-zA-Z]$/.test(event.key)) {
       this.manejarLetra(event.key.toUpperCase());
     }
+  }
+
+  guardarPuntaje(puntaje:number){
+    if (puntaje != 0){
+      try{
+        this.puntajeServices.subirPuntaje(puntaje, this.datosUsuario.Nombre, "wordle")
+      }
+      catch (error){
+        console.error("no se pudo subir el mensaje: ",error)
+      }
+    }
+  }
+
+  async abrirPuntuaciones() {
+    this.mostrarTabla = !this.mostrarTabla
+    if(this.mostrarTabla){
+      this.topTres = await this.puntajeServices.traerPuntajes("wordle")
+    }
+    
   }
 }

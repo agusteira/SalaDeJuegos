@@ -22,6 +22,7 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 10px;
   margin: 20px 0;
+  height: 100%;
 
   button {
       padding: 10px;
@@ -69,27 +70,29 @@
   color: #ffffff;
 }
 
+//==========================CARD==========================
+
 /* Card styling similar to profile-content */
-.card {
+.card1 {
+  margin: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 80%;
-  max-width: 900px;
   background: #012442;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 1);
-  margin-top: 120px;
+  margin-top: 0px;
   
 }
 
 /* Similar to profile-details and profile-description */
-.card .intentos,
-.card .palabra,
-.card .teclado,
-.card .letras-erroneas {
+.card1 .intentos,
+.card1 .palabra,
+.card1 .teclado,
+.card1 .letras-erroneas {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
@@ -100,12 +103,12 @@
 }
 
 /* Text styling similar to profile-details h2 */
-.card .intentos p,
-.card .letras-erroneas p {
+.card1 .intentos p,
+.card1 .letras-erroneas p {
   color: #000;
   font-size: 16px;
 }
-.card .teclado button {
+.card1 .teclado button {
   padding: 10px;
   font-size: 1.2rem;
   background-color: #25d366;
@@ -117,62 +120,73 @@
   box-shadow: 0 0px 20px rgba(0, 0, 0, 0.491);
 }
 
-.card .teclado button:disabled {
+.card1 .teclado button:disabled {
   background-color: #888;
   cursor: not-allowed;
 }
 
-.card .teclado button:hover:not(:disabled) {
+.card1 .teclado button:hover:not(:disabled) {
   background-color: #1ebe55;
 }
 
-/*==============================HEADER========================================*/
-
-.comeback {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #ffffff;
+/*=======================================================================================*/
+/* Card styling similar to profile-content */
+.card2 {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  background: #012442;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 1);
+  margin-top: 0px;
+  
 }
 
-h2.inactive {
-  color: #7a7a7a;
-}
-
-.underlineHover:after {
-  display: block;
-  left: 0;
-  bottom: -10px;
-  width: 0;
-  height: 2px;
-  background-color: #56baed;
-  content: "";
-  transition: width 0.2s;
-}
-
-.underlineHover:hover {
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.underlineHover:hover:after {
-  width: 100%;
-}
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #012442;
-  color: #ffffff;
+/* Similar to profile-details and profile-description */
+.card2 .intentos,
+.card2 .palabra,
+.card2 .teclado,
+.card2 .letras-erroneas {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 90%;
   text-align: center;
-  padding: 15px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1000; 
-  font-family: "Poppins", sans-serif;
+  
 }
+
+/* Text styling similar to profile-details h2 */
+.card2 .intentos p,
+.card2 .letras-erroneas p {
+  color: #000;
+  font-size: 16px;
+}
+.card2 .teclado button {
+  padding: 10px;
+  font-size: 1.2rem;
+  background-color: #25d366;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.491);
+}
+
+.card2 .teclado button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.card2 .teclado button:hover:not(:disabled) {
+  background-color: #1ebe55;
+}
+
 
 /*=======================================================================================*/
 /*====================================ALERTA===================================================*/
@@ -232,3 +246,199 @@ h2.inactive {
   background-color: #004080;
 }
 
+//===================================Muñeco ahorcado===================================
+
+.muñeco {
+  position: relative;
+  width: 150px;
+  height: 300px;
+  margin:auto;
+  margin-bottom: 100px;
+}
+
+.poste {
+  position: absolute;
+  bottom: 0;
+  left: -40%;
+  width: 10px;
+  height: 230px;
+  background-color: #333;
+}
+
+.poste1 {
+  position: absolute;
+  top:0%;
+  left: 7%;
+  width: 10px;
+  height: 150px;
+  background-color: #333;
+  transform: rotate(90deg);
+}
+
+.cabeza {
+  position: absolute;
+  top: 80px;
+  left: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #333;
+}
+
+.cuerpo {
+  position: absolute;
+  top: 130px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 100px;
+  background-color: #333;
+}
+
+.brazo-izq, .brazo-der {
+  position: absolute;
+  top: 150px;
+  width: 60px;
+  height: 10px;
+  background-color: #333;
+}
+
+.brazo-izq {
+  left: calc(50% - 60px);
+  transform: rotate(-45deg);
+}
+
+.brazo-der {
+  left: 50%;
+  transform: rotate(45deg);
+}
+
+.pierna-izq, .pierna-der {
+  position: absolute;
+  top: 240px;
+  width: 60px;
+  height: 10px;
+  background-color: #333;
+}
+
+.pierna-izq {
+  left: calc(50% - 50px);
+  transform: rotate(-45deg);
+}
+
+.pierna-der {
+  left: 50%;
+  transform: rotate(45deg);
+}
+
+.cardona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+
+  border-radius: 10px;
+  
+}
+
+
+  /*==========================================================*/
+//Grid
+.grid-general {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Primera columna más grande que la segunda */
+  grid-template-rows: auto; /* Ajusta automáticamente las filas */
+  transition: grid-template-columns 0.5s ease; /* Transición suave al cambiar el layout */
+}
+
+.one-column {
+  grid-template-columns: 1fr; /* Una columna de igual tamaño */
+}
+
+.two-columns {
+  grid-template-columns: 2fr 1fr; /* Configuración de dos columnas, primera más grande */
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+}
+
+
+  /*==========================================================*/
+
+  .puntuador-container {
+    position: fixed;
+    top: 110px;
+    left: 73%;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* Establece el ancho fijo del contenedor */
+    max-height: 70vh; /* Altura máxima */
+    overflow-y: auto; /* Agrega scroll si hay demasiados elementos */
+  }
+  
+  /* Colores especiales para las primeras 3 posiciones */
+  .puntuacion-item:nth-child(2) {
+    background-color: #FFD700; /* Oro */
+    color: #000000;
+  }
+  
+  .puntuacion-item:nth-child(3) {
+    background-color: #C0C0C0; /* Plata */
+    color: #000000;
+  }
+  
+  .puntuacion-item:nth-child(4) {
+    background-color: #CD7F32; /* Bronce */
+    color: #000000;
+  }
+  
+  .puntuacion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .puntuacion-usuario {
+    font-weight: bold;
+    font-size: 1.1rem;
+    flex: 1;
+    color: #ffffff;
+    text-shadow: 
+    -1px -1px 0 #000000,   /* Borde arriba a la izquierda */
+    1px -1px 0 #000000,    /* Borde arriba a la derecha */
+    -1px 1px 0 #000000,    /* Borde abajo a la izquierda */
+    1px 1px 0 #000000;     /* Borde abajo a la derecha */
+  }
+  
+  .puntuacion-puntaje {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #f4a261;
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* La fecha se alinea a la derecha y queda abajo */
+  .puntuacion-fecha {
+    font-size: 0.9rem;
+    color: #000000;
+    flex: 1;
+    text-align: right;
+    position: relative;
+    bottom: -5px;
+  }
+  

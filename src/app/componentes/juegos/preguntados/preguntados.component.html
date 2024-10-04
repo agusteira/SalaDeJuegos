@@ -5,6 +5,9 @@
                 COMEBACK
             </h2>
             <h1>QUIEN SOY?</h1>
+            <button class="btn btn-primary puntuaciones" (click)="abrirPuntuaciones()">
+                Puntuaciones
+            </button>
         </div>
     </div>
 
@@ -21,7 +24,8 @@
 
         <div *ngIf="mostrarModalError" class="modal-overlay">
             <div class="modal-content">
-                <h2>{{ mensaje }}</h2>
+                <h1>{{ mensaje }}</h1>
+                <h2>Puntaje final: {{ puntaje }}</h2>
                 <button (click)="cerrarModal()">Cerrar</button>
             </div>
         </div>
@@ -30,6 +34,18 @@
         <div *ngIf="!mostrarModalError" class="puntaje">
             <h3>{{ mensaje }}</h3>
             <p>Puntaje: {{ puntaje }}</p>
+        </div>
+    </div>
+
+    <div class="puntuador-container" *ngIf="mostrarTabla">
+        <div class="puntuador-content">
+            <h1>Puntuaciones</h1>
+            <ng-container *ngFor="let puntuacion of topTres; let i = index">
+                <div class="puntuacion-item">
+                    <span class="puntuacion-usuario">{{ puntuacion.Usuario.toUpperCase() }} <br> {{ puntuacion.Puntaje }} puntos</span>
+                    <span class="puntuacion-fecha">{{ puntuacion.Fecha }}</span>
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>

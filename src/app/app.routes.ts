@@ -5,6 +5,7 @@ import { ErrorComponent } from './componentes/error/error.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { SignUpComponent  } from './componentes/sign-up/sign-up.component';
 import { QuienSoyComponent } from './componentes/quien-soy/quien-soy.component';
+import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 
 
 export const routes: Routes = [
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
   { path: 'quien-soy', component: QuienSoyComponent },
   { path: 'error', component: ErrorComponent },
+  { path: 'encuesta', component: EncuestaComponent },
   { path: "juegos", loadChildren: ()=> import ("./modulos/juegos/juegos.module").then(m => m.JuegosModule)},
   { path: '', redirectTo: '/home', pathMatch: 'full' },  // Ruta por defecto
   { path: '**', component: ErrorComponent }  // Ruta para errores 404

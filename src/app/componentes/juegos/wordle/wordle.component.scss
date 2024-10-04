@@ -10,7 +10,7 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-  width: 80%;
+  width: 40%;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -50,7 +50,7 @@
 }
 
 .incorrecta {
-  background-color: #f44336;
+  background-color: #888;
 }
 
 .teclado {
@@ -194,4 +194,79 @@ h2.inactive {
   background-color: #004080;
 }
 
-/*==========================================================*/
+  /*==========================================================*/
+
+  .puntuador-container {
+    position: fixed;
+    top: 110px;
+    left: 73%;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* Establece el ancho fijo del contenedor */
+    max-height: 70vh; /* Altura máxima */
+    overflow-y: auto; /* Agrega scroll si hay demasiados elementos */
+  }
+  
+  /* Colores especiales para las primeras 3 posiciones */
+  .puntuacion-item:nth-child(2) {
+    background-color: #FFD700; /* Oro */
+    color: #000000;
+  }
+  
+  .puntuacion-item:nth-child(3) {
+    background-color: #C0C0C0; /* Plata */
+    color: #000000;
+  }
+  
+  .puntuacion-item:nth-child(4) {
+    background-color: #CD7F32; /* Bronce */
+    color: #000000;
+  }
+  
+  .puntuacion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .puntuacion-usuario {
+    font-weight: bold;
+    font-size: 1.1rem;
+    flex: 1;
+    color: #ffffff;
+    text-shadow: 
+    -1px -1px 0 #000000,   /* Borde arriba a la izquierda */
+    1px -1px 0 #000000,    /* Borde arriba a la derecha */
+    -1px 1px 0 #000000,    /* Borde abajo a la izquierda */
+    1px 1px 0 #000000;     /* Borde abajo a la derecha */
+  }
+  
+  .puntuacion-puntaje {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #f4a261;
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* La fecha se alinea a la derecha y queda abajo */
+  .puntuacion-fecha {
+    font-size: 0.9rem;
+    color: #000000;
+    flex: 1;
+    text-align: right;
+    position: relative;
+    bottom: -5px;
+  }
+  

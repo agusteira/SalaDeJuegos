@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { delay, Subscription } from 'rxjs';
 import { fromTask } from '@angular/fire/storage';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   intervaloHora: any;
   intervaloChat: any;
 
-  constructor(private router: Router,  private firestore: Firestore, public auth: Auth, private chatServices: ChatService) {}
+  constructor(private router: Router,  private firestore: Firestore, public auth: Auth, private chatServices: ChatService, private authServices: AuthService) {}
 
   async ngOnInit(): Promise<void> {
     //Poner la hora en el header
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     onAuthStateChanged(this.auth, async (user: User | null) => {
       if (user) {
         this.userLoggedIn = true;
-        this.datosUsuario = await this.ObtenerDatosUsuario(user.email!);
+        this.datosUsuario = await this.authServices.ObtenerDatosUsuario(user.email!);
         if (this.datosUsuario) {
           this.userName = this.datosUsuario.Nombre; // Si el usuario tiene un displayName, lo muestra
         }
